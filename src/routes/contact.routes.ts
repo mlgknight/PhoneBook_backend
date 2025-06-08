@@ -1,8 +1,6 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
 import type { contact } from '../types/types';
-import { nanoid } from 'nanoid';
-
 export let contacts: contact[] = [
 	{
 		id: '1',
@@ -26,6 +24,12 @@ export let contacts: contact[] = [
 	},
 ];
 
+function generateUUID() {
+	return crypto.randomUUID();
+}
+
+
+
 export const contactRouter = Router();
 
 contactRouter.get('/', (req: Request, res: Response) => {
@@ -45,7 +49,7 @@ contactRouter.post('/', (req: Request, res: Response) => {
 			error: `Cannot add user as ${userFound.name} is already in the database`,
 		});
 	}
-	const newContact = { id: nanoid(), ...req.body };
+	const newContact = { id: generateUUID(), ...req.body };
 	contacts.push(newContact);
 	res.status(201).json(newContact);
 });

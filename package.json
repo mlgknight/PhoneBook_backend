@@ -8,14 +8,11 @@
 		"dev": "cross-env NODE_ENV=development tsx watch src/app.ts",
 		"format": "prettier --write \"src/**/*.ts\"",
 		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
-		"start:prod": "cross-env NODE_ENV=production node dist/app.js",
-		"start": "npm run start:prod"
+		"start:prod": "cross-env NODE_ENV=production node dist/app.js"
 	},
 	"dependencies": {
-		"cors": "^2.8.5",
 		"cross-env": "^7.0.3",
-		"dotenv": "^16.5.0",
-		"express": "^4.19.2",
+		"express": "^4.21.2",
 		"mongoose": "^8.2.2",
 		"morgan": "^1.10.0",
 		"winston": "^3.12.0"
