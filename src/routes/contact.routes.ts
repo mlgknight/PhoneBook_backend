@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Request, Response } from 'express';
 import type { contact } from '../types/types';
+import { v4 as uuidv4 } from 'uuid';
 
 export let contacts: contact[] = [
 	{
@@ -44,7 +45,7 @@ contactRouter.post('/', (req: Request, res: Response) => {
 			error: `Cannot add user as ${userFound.name} is already in the database`,
 		});
 	}
-	const newContact = { id: (contacts.length + 1).toString(), ...req.body };
+	const newContact = { id: uuidv4(), ...req.body };
 	contacts.push(newContact);
 	res.status(201).json(newContact);
 });
